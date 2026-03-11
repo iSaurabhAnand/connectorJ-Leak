@@ -40,8 +40,6 @@ spans.size() IMMEDIATELY after conn.close()  : 14
 spans.size() AFTER conn.close() + 3x GC      : 1
 
 BUG CONFIRMED — spans map not cleared by conn.close() or GC.
-
-spans.size() AFTER AbandonedConnectionCleanupThread + 2x GC      : 1
 ```
 
 ## Dependencies
