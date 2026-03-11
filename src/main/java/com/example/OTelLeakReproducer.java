@@ -56,13 +56,6 @@ public class OTelLeakReproducer {
         } else {
             System.out.println("PASS — spans cleared at conn.close().");
         }
-
-        // Cleanup the AbandonedConnectionCleanupThread to prevent it from keeping the classloader alive after the test finishes.
-        com.mysql.cj.jdbc.AbandonedConnectionCleanupThread.checkedShutdown();
-        // Final GC to clean up the cleanup thread's reference to the classloader, if any.
-        System.gc(); System.gc();
-        Thread.sleep(1000);
-        System.out.printf("spans.size() AFTER AbandonedConnectionCleanupThread + 2x GC      : %d%n%n", spans.size());
     }
 
     private static Field field(String className, String fieldName) throws Exception {
